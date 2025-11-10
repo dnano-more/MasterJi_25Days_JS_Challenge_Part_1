@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Introduction</title>
+</head>
+
+<body>
+    <h1 id="first-heading">DOM structure and Introduction</h1>
+    <div class="bg-black">
+        <h2 class="heading">DOM Learning on Chai aur code</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, non!</p>
+
+        <a href="https://google.com">google</a>
+        <a href="https://amazon.com">amazon</a>
+        <a href="https://microsoft.com">microsoft</a>
+    </div>
+
+    <script>
+        // text node means atributes and innertext of html tag
+
+        console.log(window);
+        console.log(window.document);
+        console.log(document);
+        console.dir(document);
+        
+        console.log(document.baseURI);
+        console.log(document.links);   // it gives HTMLCollection but keep in mind that is not a proper array.
+
+        console.log(document.links[2]);  // HTMLCollection ka jo all links ka array hain uske 2nd index pe jo link milegi use print kardega.
+
+
+        console.log(document.getElementById('first-heading'));  // prints mactching id element
+
+        document.querySelector('#first-heading').innerHTML = "<h1> DOM Structure and basic manipulation </h1>"
+        console.log(document.querySelector('#first-heading'));
+    </script>
+</body>
+
+</html>
