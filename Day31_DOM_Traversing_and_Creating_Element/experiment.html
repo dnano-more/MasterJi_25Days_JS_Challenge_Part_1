@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Practice | A user input element creation project</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    // const bgColor = ['blue', 'white', 'red', 'yellow'];
+    // const Color = ['white', 'black', 'blue', 'green'];
+
+    
+    do {
+        function factoryElement(inputElement, text, bgColor, textColor) {
+            const element = document.createElement(inputElement);
+            const fillText = document.createTextNode(text);
+            element.appendChild(fillText);
+            document.body.appendChild(element);
+            element.style.backgroundColor = bgColor
+            element.style.color = textColor
+            element.style.padding = "10px"
+            element.style.margin = "10px"
+            element.style.borderRadius = "20px"
+            element.style.border = "2px dashed"
+            element.style.borderColor = textColor
+            element.style.textAlign = "center"
+        }
+    
+        // factoryElement('h1', 'This h1 is created by JS', bgColor[0], Color[0]);
+        // factoryElement('h2', 'This h2 is created by JS', bgColor[1], Color[1]);
+        // factoryElement('h3', 'This h3 is created by JS', bgColor[2], Color[2]);
+        // factoryElement('h4', 'This h4 is created by JS', bgColor[3], Color[3]);
+    
+        const tagName = prompt('Enter tag name that you want to create(like h1, h2, p, div etc)');
+        const addText = prompt('Add text for tag');
+        const bgColor = prompt('What background color you want');
+        const Color = prompt('What text color you want');
+    
+        factoryElement(tagName, addText, bgColor, Color);
+        alert('Your element is created successfully..!✅');
+        
+    } while ( confirm('Do you want to add more element?') );
+
+</script>
+
+</html>
