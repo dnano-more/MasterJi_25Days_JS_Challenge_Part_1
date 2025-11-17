@@ -1,4 +1,4 @@
-const form = document.querySelector("form");
+const form = document.querySelector("form"); 
 // This usecase gives you empty value
 //const height = parseInt(document.querySelector('#height').value);
 
