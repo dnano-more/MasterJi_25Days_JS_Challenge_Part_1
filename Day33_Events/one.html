@@ -1,63 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>htnml Events </title>
+    <title>Events </title>
 </head>
+
 <body style="background-color: #414141; color: aliceblue;">
     <h2>Amazing image</h2>
-    <div >
+    <div>
         <ul id="images">
-            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
-            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
-            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
-            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
-            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="photoshop"
+                    src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt="photoshop"></li>
+            <li><img width="200px" id="japan"
+                    src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt=""></li>
+            <li><img width="200px" id="river"
+                    src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt=""></li>
+            <li><img width="200px" id="owl"
+                    src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt=""></li>
+            <li><img width="200px" id="prayer"
+                    src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load"
+                    alt=""></li>
             <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
         </ul>
-   </div>
+    </div>
 </body>
 <script>
-    // document.getElementById('owl').onclick = function(){
-    //     alert("owl clicked")
-    // }
+    /* 
+    document.getElementById('owl').onclick = function(){
+         alert("owl clicked")
+     }    
+     attachEvent()
+     jQuery - on
+    
+    // Professional way to add event listener
+    document.getElementById('owl').addEventListener('click', function(){
+         alert("owl clicked again..!")
+     }); */
 
-     // attachEvent()
-    // jQuery - on
+    // Event object
+    // document.getElementById('owl').addEventListener('click', function (e) {
+    //     console.log(e);
+    // });
 
     // type, timestamp, defaultPrevented
     // target, toElement, srcElement, currentTarget,
     // clientX, clientY, screenX, screenY
     // altkey, ctrlkey, shiftkey, keyCode
 
+    //Event Bubbling and Capturing Concept:
+    // bubbling --> default which is false [bubbling means inner element se outer element pe jao, pehale inner ka event chalega then outer ka] 
+    // capturing --> need to set true [isme outer se inner jao, pehale outer ka event chalega then inner ka]]
+
     // document.getElementById('images').addEventListener('click', function(e){
     //     console.log("clicked inside the ul");
-    // }, false)
+    // }, false); // default is false - bubbling phase [agar false nahi bhi likho to bhi bubbling hi hoga]
 
     // document.getElementById('owl').addEventListener('click', function(e){
     //     console.log("owl clicked");
-    //     e.stopPropagation()
-    // }, false)
-    
+    //     // e.stopPropagation()  // Is means stop the event bubbling[ matlab owl pe click hua to ul ka jo click event hamne upar lagaya hain wo nahi chalega (ul ka click event rokne ke liye stopPropagation use kiya yahan par)]
+    // }, false);
+    //note: if stopPropagation is used in owl click, then ul click will not be logged
+
+    // capturing phase - top se bottom jao[matlab pehale ul ka event chalega then owl ka]
+    document.getElementById('images').addEventListener('click', function (e) {
+        console.log("clicked inside the ul");
+    }, true);
+
+    document.getElementById('owl').addEventListener('click', function (e) {
+        console.log("owl clicked");
+    }, true);
+    //notes: 
+    // if true is used for both ul and owl, then pehale ul click will be logged then owl click will be logged
+    // Otherwise, if false is used for both ul and owl, then pehale owl click will be logged then ul click will be logged
+    /* .stopPropagation() - This is useful when we want to keep the event listeners for an inner element 
+        and an outer element separate. Normally, when an event is triggered on the inner element, 
+        it bubbles up and triggers the event on the outer element as well. 
+        To prevent this, we can use .stopPropagation() in the inner element's event listener.
+        This will stop the event from bubbling up or capturing, depending on the event listener settings.
+        In this way, the outer element's event can still be triggered separately from the inner element's event. 
+     */
+
+
     // document.getElementById('google').addEventListener('click',function(e){
     //     e.preventDefault();
     //     e.stopPropagation()
     //     console.log("google clicked");
     // }, false)
-   
-    
-    document.querySelector('#images').addEventListener('click', function(e){
-        console.log(e.target.tagName);
-        if (e.target.tagName === 'IMG') {
-            console.log(e.target.id);
-            let removeIt = e.target.parentNode
-            removeIt.remove()
-        }
-    
-        
-    })
-    
+
+
+    // document.querySelector('#images').addEventListener('click', function (e) {
+    //     console.log(e.target.tagName);
+    //     if (e.target.tagName === 'IMG') {
+    //         console.log(e.target.id);
+    //         let removeIt = e.target.parentNode
+    //         removeIt.remove()
+    //     }
+
+    // })
+
     //removeIt.parentNode.removeChild(removeIt)
 </script>
+
 </html>
