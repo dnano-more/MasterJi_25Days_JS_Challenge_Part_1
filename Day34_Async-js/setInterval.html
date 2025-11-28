@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setInterval & clearInterval</title>
+</head>
+
+<body>
+    <h1>Async understanding</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+    <script>
+
+        // set interval 
+        setInterval(function () {
+            // console.log("Seconds", Date.now());
+        }, 1000)
+
+        const sayDate = function (str) {
+            // console.log(str, Date.now());
+        }
+        //setInterval(sayDate, 1000, "ThirdParaMeter");
+
+        const intrval = setInterval(sayDate, 1000, "ThirdParaMeter");
+        // clearInterval(intrval);
+
+        document.querySelector('#start').addEventListener('click', function () {
+            const set = function () {
+                console.log("Nano see seconds ===> ", Date.now());
+            }
+            const clearInter = setInterval(set, 1000);
+            document.querySelector('#stop').addEventListener('click', function () {
+                clearInterval(clearInter);
+                console.log("STOPED");
+            });
+        })
+
+    </script>
+</body>
+
+</html>

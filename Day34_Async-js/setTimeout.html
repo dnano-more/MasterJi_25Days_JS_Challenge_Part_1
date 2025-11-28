@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setTimeout & clearTimeout</title>
+</head>
+
+<body>
+    <h1>Async understanding</h1>
+    <button id="stop">Stop</button>
+
+    <script>
+        setTimeout(function () {
+            console.log('Hello Nano..! I am first log');
+        }, 3000); // It means ki jo bhi time diya hain wo khatam hone ke baad ek bar exicute karo bas 
+
+        // we can pass a reference of function in setTimeout fn
+        const sayNano = function () {
+            console.log('Hello Nano..! I am second log');
+        };
+        setTimeout(sayNano, 1000);
+
+        const changeText = function () {
+            document.querySelector('h1').innerHTML = 'I understood setTimeout now..!';
+        };
+        // setTimeout(changeText, 5000);
+
+        const changeME = setTimeout(changeText, 5000);
+        // clearTimeout(changeME);
+
+        document.querySelector('#stop').addEventListener('click', function () {
+            clearTimeout(changeME);
+            console.log('STOPED');
+        })
+
+    </script>
+</body>
+
+</html>
