@@ -15,26 +15,26 @@
     <script>
 
         // set interval 
-        setInterval(function () {
-            // console.log("Seconds", Date.now());
-        }, 1000)
+        // setInterval(function () {
+        //     // console.log("Seconds", Date.now());
+        // }, 1000)
 
         const sayDate = function (str) {
-            // console.log(str, Date.now());
+            console.log(str, Date.now());
         }
-        //setInterval(sayDate, 1000, "ThirdParaMeter");
+        // setInterval(sayDate, 1000, "ThirdParaMeter");
 
-        const intrval = setInterval(sayDate, 1000, "ThirdParaMeter");
-        // clearInterval(intrval);
+        const intrvalID = setInterval(sayDate, 1000, "ThirdParaMeter");
+        clearInterval(intrvalID);
+        
 
-        document.querySelector('#start').addEventListener('click', function () {
-            const set = function () {
-                console.log("Nano see seconds ===> ", Date.now());
-            }
-            const clearInter = setInterval(set, 1000);
-            document.querySelector('#stop').addEventListener('click', function () {
-                clearInterval(clearInter);
-                console.log("STOPED");
+        document.querySelector('#start').addEventListener('click', function(){
+            const settingAnInterval = setInterval(function(){
+                console.log('Interval satarted! ', Date.now());
+            }, 1000);
+            
+            document.querySelector('#stop').addEventListener('click', function(){
+                clearInterval(settingAnInterval);
             });
         })
 
