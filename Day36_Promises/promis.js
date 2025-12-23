@@ -1,27 +1,28 @@
 // Creating a Promise
 const onePromise = new Promise(function (resolve, reject) {
+    // What is instance in Javascript? read ==> https://share.google/aimode/1nXiNKmvphitfdWWT
     // Do an async task
     // DB calls, cryptography, network
     setTimeout(function () {
-        console.log("Async task is completed.");
+        // console.log("Async task is completed.");
         resolve();
     }, 1000);
 });
 
 // Handling Promise
 onePromise.then(function () {
-    console.log("Promise consumed!");
+    // console.log("Promise consumed!");
 })
 
 
 // Chained Promises 
 new Promise(function (hoGaya, nahiHuva) {
     setTimeout(function () {
-        console.log("Async task two");
+        // console.log("Async task two");
         hoGaya();
     }, 1000);
 }).then(function () {
-    console.log("Async two resolved!");
+    // console.log("Async two resolved!");
 });
 
 
@@ -33,7 +34,7 @@ const promiseThree = new Promise(function (resolve, reject) {
 })
 
 promiseThree.then(function (user) {
-    console.log(user);
+    // console.log(user);
 })
 
 
@@ -55,6 +56,7 @@ const promiseFour = new Promise(function (resolve, reject) {
 // })
 // console.log(username);
 
+// promises se Data nikalne ke liye uski chaining karni hoti hain
 promiseFour
     .then((user) => {
         console.log(user);
@@ -91,3 +93,38 @@ async function consumePromiseFive() {
     }
 }
 consumePromiseFive();
+
+
+// get all users
+async function getAllUsers() {
+    try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/users')
+        // console.log(response);
+        const data = await response.json();
+        // console.log(data);
+    } catch (error) {
+        console.log("E: ", error);
+    }
+}
+getAllUsers();
+
+
+fetch('https://jsonplaceholder.typicode.com/users')
+.then((respons) => {
+    return respons.json()
+})
+.then((data) => {
+    console.log(data)
+})
+.catch((error) => console.log('error'));
+
+
+// My github api
+fetch('https://api.github.com/users/dnano-more')
+.then((respons) => {
+    return respons.json()
+})
+.then((data) => {
+    console.log(data)
+})
+.catch((error) => console.log('error'));
