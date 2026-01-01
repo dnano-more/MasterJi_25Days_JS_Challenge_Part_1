@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clouser and job tension</title>
+</head>
+
+<body style="background-color: #313131;">
+
+    <button id="orange">Orange</button>
+    <button id="green">Green</button>
+
+    <script>
+        // Lexical scope
+
+        // function init() {
+        //     let name = "Mozilla"; // name is a local variable created by init
+        //     function displayName() {
+        //         // displayName() is the inner function, that forms a closure
+        //         console.log(name); // use variable declared in the parent function
+        //     }
+        //     displayName();
+        // }
+        // init();
+
+        // Another example of lexical scope
+        function outer(){
+            let username = 'dnano';
+            // console.log(secret); // no access
+            function inner(){
+                let secret = 'secreteWord' 
+                console.log("Inner name: ", username);
+            }
+
+            function grandSon(){
+                console.log("InnerTwo name: ", username);
+                // console.log(secret);  // no access
+            }
+            inner();
+            grandSon(); 
+        }
+        outer();
+        // console.log("Too outer username: ", username);  // no access
+
+
+        // closure example
+        function makeFunction(){
+            const name = "Mozilla";
+            function displayName(){
+                console.log(name);
+            }
+            return displayName;
+        }
+        // console.log(makeFunction());
+        
+        const myFunc = makeFunction();  // ab myFunc me sara makeFunction() ka execution context aur lexical scope stoare ho gaya hain.
+        myFunc();  // to ab displayName() automatic call ho jayega. output: Mozilla
+
+    </script>
+    <script>
+
+        // document.getElementById('orange').onclick = function(){
+        //     document.body.style.backgroundColor = `orange`
+        // }
+        // document.getElementById('green').onclick = function(){
+        //     document.body.style.backgroundColor = `green`
+        // }
+
+        // Real usecase of closure
+        function clickHandler(color){
+            // document.body.style.backgroundColor = `${color}`
+            
+            return function(){
+                document.body.style.backgroundColor = `${color}`
+            }
+        }
+
+        document.getElementById('orange').onclick = clickHandler('orange')
+        document.getElementById('green').onclick = clickHandler('green')
+    </script>
+</body>
+
+</html>
